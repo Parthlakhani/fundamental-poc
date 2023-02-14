@@ -1,0 +1,136 @@
+<div style="height: 100vh">
+  <fd-splitter>
+    <fd-splitter-pane-container>
+      <fd-splitter-split-pane id="one" size="300px">
+        Side Panel
+      </fd-splitter-split-pane>
+      <fd-splitter-split-pane id="two">
+        <fd-splitter-pane-container orientation="horizontal">
+          <fd-splitter-split-pane>
+            <div class="container">
+              <fdp-table
+                [dataSource]="source"
+                [isTreeTable]="true"
+                relationKey="children"
+                emptyTableMessage="No data found"
+                (rowToggleOpenState)="onRowToggleOpenState($event)"
+                (rowsRearrange)="onRowsRearrange($event)"
+              >
+                <fdp-table-toolbar
+                  title="Table 1"
+                  [hideItemCount]="true"
+                  [showExpandCollapseButtons]="true"
+                >
+                </fdp-table-toolbar>
+
+                <fdp-column
+                  name="structure"
+                  key="structure"
+                  label="Structure"
+                  align="start"
+                >
+                </fdp-column>
+
+                <fdp-column name="occurence" key="occurence" label="Occurence">
+                </fdp-column>
+              </fdp-table>
+
+              <fdp-table
+                [dataSource]="source"
+                [isTreeTable]="true"
+                relationKey="children"
+                emptyTableMessage="No data found"
+                (rowToggleOpenState)="onRowToggleOpenState($event)"
+                (rowsRearrange)="onRowsRearrange($event)"
+              >
+                <fdp-table-toolbar
+                  title="Table 2"
+                  [hideItemCount]="true"
+                  [showExpandCollapseButtons]="true"
+                >
+                </fdp-table-toolbar>
+
+                <fdp-column
+                  name="structure"
+                  key="structure"
+                  label="Structure"
+                  align="start"
+                >
+                </fdp-column>
+
+                <fdp-column name="occurence" key="occurence" label="Occurence">
+                </fdp-column>
+              </fdp-table>
+            </div>
+          </fd-splitter-split-pane>
+          <fd-splitter-split-pane>
+            <div>
+              <!-- ////////// -->
+              <!-- Footer using tree table -->
+
+              <fdp-table
+                [style.width]="tableWidth"
+                [dataSource]="footerSource"
+                [isTreeTable]="true"
+                emptyTableMessage="No data found"
+                [highlightNavigatedRow]="true"
+                bodyHeight="200px"
+                relationKey="children"
+                (rowToggleOpenState)="onRowToggleOpenState($event)"
+                (rowsRearrange)="onRowsRearrange($event)"
+              >
+                <fdp-column
+                  name="name"
+                  key="name"
+                  label="Functions"
+                  align="start"
+                >
+                </fdp-column>
+              </fdp-table>
+
+              <!-- Footer using vertical nevigation -->
+
+              <!-- <fdp-panel-content>
+      <fd-vertical-navigation>
+        <li fd-list-group-header fd-vertical-navigation-group-header>
+          <span fd-list-title>Functions</span>
+        </li>
+        <li fd-list-navigation-item>
+          <span fd-list-navigation-item-text> Arithmetic </span>
+        </li>
+        <li fd-list-navigation-item>
+          <span fd-list-navigation-item-text> Boolean </span>
+          <button fd-list-navigation-item-arrow></button>
+          <ul fd-list>
+            <li fd-list-navigation-item>
+              <span fd-list-navigation-item-text>func 1</span>
+            </li>
+            <li fd-list-navigation-item [indicated]="true">
+              <span fd-list-navigation-item-text>func 2 </span>
+            </li>
+          </ul>
+        </li>
+        <li fd-list-navigation-item>
+          <span fd-list-navigation-item-text> Constants </span>
+          <button fd-list-navigation-item-arrow></button>
+          <ul fd-list>
+            <li fd-list-navigation-item>
+              <span fd-list-navigation-item-text>func 1</span>
+            </li>
+            <li fd-list-navigation-item>
+              <span fd-list-navigation-item-text>func 2</span>
+            </li>
+          </ul>
+        </li>
+        <li fd-list-navigation-item>
+          <span fd-list-navigation-item-text> Conversions </span>
+        </li>
+      </fd-vertical-navigation>
+    </fdp-panel-content> -->
+            </div>
+          </fd-splitter-split-pane>
+        </fd-splitter-pane-container>
+      </fd-splitter-split-pane>
+    </fd-splitter-pane-container>
+  </fd-splitter>
+</div>
