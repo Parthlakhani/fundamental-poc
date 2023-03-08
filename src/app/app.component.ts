@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
+declare var LeaderLine: any;
 
 @Component({
   selector: 'app-root',
@@ -6,9 +7,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+  @ViewChild('startingElement') startingElement: ElementRef | undefined;
+  @ViewChild('endingElement') endingElement: ElementRef | undefined;
+
   title = 'fundamental-poc';
   subListOpen = false;
   subRootOpen = false;
+
+  ngAfterViewInit() {
+    const line = new LeaderLine(
+      this.startingElement?.nativeElement,
+      this.endingElement?.nativeElement
+    );
+  }
 
   toggleChildList() {
     this.subListOpen = !this.subListOpen;

@@ -8,63 +8,77 @@
         <fd-splitter-pane-container orientation="horizontal">
           <fd-splitter-split-pane>
             <div class="container">
-              <fdp-table
-                [dataSource]="source"
-                [isTreeTable]="true"
-                relationKey="children"
-                emptyTableMessage="No data found"
-                (rowToggleOpenState)="onRowToggleOpenState($event)"
-                (rowsRearrange)="onRowsRearrange($event)"
-              >
-                <fdp-table-toolbar
-                  title="Table 1"
-                  [hideItemCount]="true"
-                  [showExpandCollapseButtons]="true"
+              <div #startingElement>
+                <fdp-table
+                  [dataSource]="source"
+                  [isTreeTable]="true"
+                  relationKey="children"
+                  emptyTableMessage="No data found"
+                  (rowToggleOpenState)="onRowToggleOpenState($event)"
+                  (rowsRearrange)="onRowsRearrange($event)"
                 >
-                </fdp-table-toolbar>
+                  <fdp-table-toolbar
+                    title="Table 1"
+                    [hideItemCount]="true"
+                    [showExpandCollapseButtons]="true"
+                  >
+                  </fdp-table-toolbar>
 
-                <fdp-column
-                  name="structure"
-                  key="structure"
-                  label="Structure"
-                  align="start"
+                  <fdp-column
+                    name="structure"
+                    key="structure"
+                    label="Structure"
+                    align="start"
+                  >
+                  </fdp-column>
+
+                  <fdp-column
+                    name="occurence"
+                    key="occurence"
+                    label="Occurence"
+                  >
+                  </fdp-column>
+                </fdp-table>
+              </div>
+
+              <div id="canvas"></div>
+
+              <div #endingElement>
+                <fdp-table
+                  [dataSource]="source"
+                  [isTreeTable]="true"
+                  relationKey="children"
+                  emptyTableMessage="No data found"
+                  (rowToggleOpenState)="onRowToggleOpenState($event)"
+                  (rowsRearrange)="onRowsRearrange($event)"
                 >
-                </fdp-column>
+                  <fdp-table-toolbar
+                    title="Table 2"
+                    [hideItemCount]="true"
+                    [showExpandCollapseButtons]="true"
+                  >
+                  </fdp-table-toolbar>
 
-                <fdp-column name="occurence" key="occurence" label="Occurence">
-                </fdp-column>
-              </fdp-table>
+                  <fdp-column
+                    name="structure"
+                    key="structure"
+                    label="Structure"
+                    align="start"
+                  >
+                  </fdp-column>
 
-              <fdp-table
-                [dataSource]="source"
-                [isTreeTable]="true"
-                relationKey="children"
-                emptyTableMessage="No data found"
-                (rowToggleOpenState)="onRowToggleOpenState($event)"
-                (rowsRearrange)="onRowsRearrange($event)"
-              >
-                <fdp-table-toolbar
-                  title="Table 2"
-                  [hideItemCount]="true"
-                  [showExpandCollapseButtons]="true"
-                >
-                </fdp-table-toolbar>
-
-                <fdp-column
-                  name="structure"
-                  key="structure"
-                  label="Structure"
-                  align="start"
-                >
-                </fdp-column>
-
-                <fdp-column name="occurence" key="occurence" label="Occurence">
-                </fdp-column>
-              </fdp-table>
+                  <fdp-column
+                    name="occurence"
+                    key="occurence"
+                    label="Occurence"
+                  >
+                  </fdp-column>
+                </fdp-table>
+              </div>
             </div>
           </fd-splitter-split-pane>
           <fd-splitter-split-pane>
-            <div>
+            <div class="footer">
               <!-- ////////// -->
               <!-- Footer using tree table -->
 
@@ -87,6 +101,8 @@
                 >
                 </fdp-column>
               </fdp-table>
+
+              <div id="paper"></div>
 
               <!-- Footer using vertical nevigation -->
 
@@ -134,3 +150,8 @@
     </fd-splitter-pane-container>
   </fd-splitter>
 </div>
+
+<!-- <div class="container">
+  <div #startingElement>Starting Element</div>
+  <div #endingElement>Ending Element</div>
+</div> -->

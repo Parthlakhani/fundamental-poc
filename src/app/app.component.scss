@@ -9,3 +9,8 @@
 .fd-vertical-navigation .fd-vertical-nav {
   width: 30rem !important;
 }
+
+.container {
+  display: flex;
+  justify-content: space-between;
+}

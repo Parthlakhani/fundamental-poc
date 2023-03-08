@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
 import { FdDate } from '@fundamental-ngx/core/datetime';
@@ -9,13 +9,20 @@ import {
   TableRowToggleOpenStateEvent,
   TableRowsRearrangeEvent,
 } from '@fundamental-ngx/platform/table';
+// @ts-ignore
+import * as Dracula from 'graphdracula';
+
+declare var Raphael: any;
 
 @Component({
   selector: 'app-table-tree',
   templateUrl: './table-tree.component.html',
   styleUrls: ['./table-tree.component.scss'],
 })
-export class TableTreeComponent {
+export class TableTreeComponent implements AfterViewInit {
+  @ViewChild('startingElement') startingElement: ElementRef | undefined;
+  @ViewChild('endingElement') endingElement: ElementRef | undefined;
+
   source: TableDataSource<ExampleItem>;
   footerSource: TableDataSource<ExampleFooter>;
   tableWidth = '300px';
@@ -27,6 +34,30 @@ export class TableTreeComponent {
 
   alert(message: string): void {
     alert(message);
+  }
+
+  ngAfterViewInit() {
+    // const line = new LeaderLine(
+    //   this.startingElement?.nativeElement,
+    //   this.endingElement?.nativeElement,
+    //   { color: 'green', size: 2, endPlugSize: 3 }
+    // );
+    let paper = Raphael(document.getElementById('canvas'), 500, 500);
+    paper.path('M0,200L900,500');
+
+    const Graph = Dracula.Graph;
+    const Renderer = Dracula.Renderer.Raphael;
+    const Layout = Dracula.Layout.Spring;
+
+    const graph = new Graph();
+
+    graph.addEdge('GroupContent', 'equals', { directed: true });
+    graph.addEdge('GroupIndex', 'equals', { directed: true });
+    graph.addEdge('equals', 'LastPage', { directed: true });
+
+    const layout = new Layout(graph);
+    const renderer = new Renderer('#paper', graph, 900, 400);
+    renderer.draw();
   }
 
   onRowToggleOpenState(event: TableRowToggleOpenStateEvent<ExampleItem>): void {
